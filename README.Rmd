@@ -1,0 +1,63 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# `msst2ap`
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+The goal of `msst2ap` (Mastering shiny `shinytest2` app-package) is to demonstrate how to test a shiny application package using [`testthat`](https://testthat.r-lib.org/) and [`shinytest2`]()
+
+## Installation
+
+You don't *have* to install the `msst2ap` package, but you might want to download it as an example (or read through [this post](https://mjfrigaard.github.io/posts/test-shiny-p4/) to learn about it's contents).
+
+```{r}
+library(msst2ap)
+```
+
+
+## Utility function tests
+
+There is a single utility function in `msst2ap`: `find_vars()`
+
+```{r}
+#| eval: true
+#| echo: false
+fs::dir_tree("tests/testthat/", regexp = "find")
+```
+
+```{r}
+#| eval: false
+testthat::test_file("tests/testthat/test-find_vars.R")
+```
+
+```{verbatim}
+#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
+```
+
+
+## `testServer()` tests
+
+```{r}
+#| eval: true
+#| echo: false
+fs::dir_tree("tests/testthat/", regexp = "Server|App")
+```
+
+```{verbatim}
+🐝 Your tests are the bee's knees 🐝
+```
