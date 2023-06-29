@@ -20,19 +20,19 @@ histogramApp <- function() {
   ui <- shiny::fluidPage(
     shiny::sidebarLayout(
       shiny::sidebarPanel(
-        datasetInput("data", is.data.frame),
-        selectVarInput("var"),
+        datasetInput(id = "data", filter = is.data.frame),
+        selectVarInput(id = "var"),
       ),
       shiny::mainPanel(
-        histogramOutput("hist")
+        histogramOutput(id = "hist")
       )
     )
   )
 
   server <- function(input, output, session) {
-    data <- datasetServer("data")
-    x <- selectVarServer("var", data)
-    histogramServer("hist", x)
+    data <- datasetServer(id = "data")
+    x <- selectVarServer(id = "var", data)
+    gghistogramServer(id = "hist", x = x)
   }
   shiny::shinyApp(ui, server)
 }

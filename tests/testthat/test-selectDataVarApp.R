@@ -2,7 +2,7 @@ dv_app <- selectDataVarApp()
 shiny::testServer(app = dv_app, expr = {
   session$setInputs(`var-var-var` = "Ozone",
                     `var-data-dataset` = "airquality")
-  cat("\n\toutput$out:\n", output$out, "\n")
+  # cat("\n\toutput$out:\n", output$out, "\n")
 
   testthat::expect_equal(
     object = input$`var-var-var`,
@@ -16,6 +16,6 @@ shiny::testServer(app = dv_app, expr = {
 
   testthat::expect_true(object = is.reactive(var))
   test_cmt("selectDataVarApp", "is.reactive(var)")
-  cat("\n\tvar:\n", var(), "\n")
+  # cat("\n\tvar:\n", var(), "\n")
 
 })

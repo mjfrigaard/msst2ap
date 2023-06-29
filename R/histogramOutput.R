@@ -14,6 +14,9 @@ histogramOutput <- function(id) {
     shiny::numericInput(
       shiny::NS(id, "bins"), "bins", 10, min = 1, step = 1),
     shiny::plotOutput(
-      shiny::NS(id, "hist"))
+      shiny::NS(id, "hist")),
+    shiny::verbatimTextOutput(
+      shiny::NS(id, "vals")
+    )
   )
 }

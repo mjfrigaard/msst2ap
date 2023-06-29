@@ -15,7 +15,8 @@
 #' @export
 #'
 #' @importFrom shiny moduleServer observe updateSelectInput
-#' @importFrom shiny bindEvent reactive is.reactive
+#' @importFrom shiny bindEvent reactive is.reactive req
+#' @importFrom purrr set_names
 selectVarServer <- function(id, data, filter = is.numeric) {
   stopifnot(shiny::is.reactive(data))
   stopifnot(!shiny::is.reactive(filter))
@@ -30,7 +31,15 @@ selectVarServer <- function(id, data, filter = is.numeric) {
     }) |>
       shiny::bindEvent(data())
 
-    shiny::reactive(data()[[input$var]])
+    return(
+      reactive({
+        shiny::req(data())
+        purrr::set_names(
+            x = data()[[input$var]],
+            nm = as.character(input$var))
+      }) |>
+        shiny::bindEvent(c(input$var, data()))
+    )
 
   })
 

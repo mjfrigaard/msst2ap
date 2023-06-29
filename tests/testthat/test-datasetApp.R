@@ -1,7 +1,7 @@
 ds_app <- datasetApp()
 shiny::testServer(app = ds_app, expr = {
   session$setInputs(`dataset-dataset` = "chickwts")
-  cat("\n\toutput$data:\n", output$data, "\n")
+  # cat("\n\toutput$data:\n", output$data, "\n")
 
   testthat::expect_equal(
     object = input$`dataset-dataset`,
