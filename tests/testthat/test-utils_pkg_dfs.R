@@ -18,11 +18,10 @@
 
 
 testthat::test_that("pkg_inst_check works", {
-  withr::local_options(repos = "http://cran.rstudio.com",
-  if ("box" %in% loadedNamespaces()) {
-    remove.packages("box")
-      }
-    )
+  withr::local_options(repos = 'http://cran.us.r-project.org',
+    if ("box" %in% loadedNamespaces()) {
+      remove.packages("box")
+    })
   pkg_inst_check("box")
   testthat::expect_true("box" %in% loadedNamespaces())
   unloadNamespace("box")
@@ -30,11 +29,10 @@ testthat::test_that("pkg_inst_check works", {
 })
 
 testthat::test_that("pkg_inst_check works", {
-  withr::local_options(repos = "http://cran.rstudio.com",
-  if ("Lahman" %in% loadedNamespaces()) {
-    remove.packages("Lahman")
-    }
-  )
+  withr::local_options(repos = 'http://cran.us.r-project.org',
+    if ("Lahman" %in% loadedNamespaces()) {
+      remove.packages("Lahman")
+    })
   pkg_inst_check("Lahman")
   testthat::expect_true("Lahman" %in% loadedNamespaces())
   unloadNamespace("Lahman")
@@ -42,7 +40,7 @@ testthat::test_that("pkg_inst_check works", {
 })
 
 test_that("pkg_inst_check works", {
-  withr::local_options(repos = "http://cran.rstudio.com")
+  withr::local_options(repos = 'http://cran.us.r-project.org')
   if ("box" %in% loadedNamespaces()) {
     unloadNamespace("box")
   }
@@ -53,7 +51,7 @@ test_that("pkg_inst_check works", {
 })
 #
 # test_that("find_pkg_df_nms works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   if ("dplyr" %nin% loadedNamespaces()) {
 #   }
 #   testthat::expect_equal(
@@ -68,7 +66,7 @@ test_that("pkg_inst_check works", {
 # })
 #
 # test_that("find_pkg_df_nms works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   if ("stringr" %nin% loadedNamespaces()) {
 #     requireNamespace("stringr")
 #   }
@@ -79,7 +77,7 @@ test_that("pkg_inst_check works", {
 #
 #
 # test_that("pkg_df_check works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   if ("stringr" %nin% loadedNamespaces()) {
 #     requireNamespace("stringr")
 #   }
@@ -89,7 +87,7 @@ test_that("pkg_inst_check works", {
 # })
 #
 # test_that("pkg_df_check works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   if ("dplyr" %nin% loadedNamespaces()) {
 #     requireNamespace("dplyr")
 #   }
@@ -99,7 +97,7 @@ test_that("pkg_inst_check works", {
 # })
 #
 # test_that("find_df_pkgs works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   testthat::expect_equal(
 #     object = find_df_pkgs(),
 #     expected = c(dplyr = "dplyr",
@@ -109,7 +107,7 @@ test_that("pkg_inst_check works", {
 #
 #
 # test_that("find_df_pkgs works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   testthat::expect_equal(
 #     object = find_df_pkgs(),
 #     expected = c(dplyr = "dplyr",
@@ -118,7 +116,7 @@ test_that("pkg_inst_check works", {
 # })
 #
 # test_that("get_pkg_df works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   testthat::expect_equal(
 #     object = get_pkg_df("mtcars", "datasets"),
 #     expected = datasets::mtcars)
@@ -126,7 +124,7 @@ test_that("pkg_inst_check works", {
 # })
 #
 # test_that("get_pkg_df works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   testthat::expect_equal(
 #     object = get_pkg_df("starwars", "dplyr"),
 #     expected = dplyr::starwars)
@@ -134,7 +132,7 @@ test_that("pkg_inst_check works", {
 # })
 #
 # test_that("get_pkg_df works", {
-#   withr::local_options(repos = "http://cran.rstudio.com")
+#   withr::local_options(repos='http://cran.us.r-project.org')
 #   testthat::expect_equal(
 #     object = get_pkg_df("gss_cat", "forcats"),
 #     expected = forcats::gss_cat)

@@ -19,7 +19,7 @@
 #' @importFrom shiny mainPanel
 #'
 #' @examples
-#' ggHistogramApp(pkg = c("forcats", "tidyr", "palmerpenguins"))
+#' ggHistogramApp(pkg = c("dplyr", "palmerpenguins"))
 ggHistogramApp <- function(pkg = NULL) {
   ui <- shiny::fluidPage(
     shiny::sidebarLayout(

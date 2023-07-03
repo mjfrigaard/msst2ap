@@ -62,35 +62,33 @@ pkg_install_check <- function(pkg) {
 #'  }
 #' pkg_inst_check(c("janitor", "snakecase"))
 pkg_inst_check <- function(pkg, quiet = TRUE) {
+  options(repos = 'http://cran.us.r-project.org')
   pkg_check <- function(pkg, quiet) {
-    if (isFALSE(quiet)) {
       pkg <- as.character(pkg)
-      paks_tbl <- tibble::as_tibble(
-                      utils::installed.packages())
-      if (!any(stringr::str_detect(paks_tbl$Package, pkg))) {
-      cat('\nPackage:', pkg, 'Not found, Installing Now...\n')
-
+      paks <- loadedNamespaces()
+      pkg_regex <- paste0("^", pkg, "$")
+    if (isFALSE(quiet)) {
+      if (!any(stringr::str_detect(paks, pkg_regex))) {
+        cat('\nPackage:', pkg, 'Not found, Installing Now...\n')
         install.packages(pkgs = pkg,
+          repos = 'http://cran.us.r-project.org',
           dep = TRUE,
           quiet = TRUE,
           verbose = FALSE)
 
-      } else {
-      cat('\nPackage:', pkg, 'Not found, Installing Now...\n')
-      }
-      cat('\nLoading Package :', pkg, "\n")
-        require(pkg, character.only = TRUE)
+        cat('\nLoading Package :', pkg, "\n")
+          require(pkg, character.only = TRUE)
+        }
       # rstudioapi::restartSession()
     } else {
-      pkg <- as.character(pkg)
-      paks_tbl <- tibble::as_tibble(
-                      utils::installed.packages())
-      if (!any(stringr::str_detect(paks_tbl$Package, pkg))) {
+      if (!any(stringr::str_detect(paks, pkg_regex))) {
+
         install.packages(pkgs = pkg,
           dep = TRUE,
+          repos = 'http://cran.us.r-project.org',
           quiet = TRUE,
           verbose = FALSE)
-      } else {
+
         require(pkg, character.only = TRUE)
       }
     }
@@ -119,7 +117,9 @@ pkg_inst_check <- function(pkg, quiet = TRUE) {
 #' find_pkg_df_nms(pkg = "datasets")
 #' find_pkg_df_nms(pkg = "lubridate")
 find_pkg_df_nms <- function(pkg) {
+ pkg <- as.character(pkg)
   pkg_inst_check(pkg = pkg)
+  library(package = pkg, character.only = TRUE)
   pkg_pos <- paste0("package:", pkg)
   pkg_nms <- ls(pkg_pos)
   pkg_objs <- purrr::map2(.x = pkg_nms, .y = pkg_pos, .f = get)
@@ -161,7 +161,9 @@ find_pkg_df_nms <- function(pkg) {
 #' pkg_df_check("dplyr")
 #' pkg_df_check("stringr")
 pkg_df_check <- function(pkg) {
+  pkg <- as.character(pkg)
   pkg_inst_check(pkg = pkg)
+  library(package = pkg, character.only = TRUE)
   pkg_pos <- paste0("package:", pkg)
   pkg_nms <- ls(pkg_pos)
   pkg_objs <- purrr::map2(.x = pkg_nms, .y = pkg_pos, .f = get)
