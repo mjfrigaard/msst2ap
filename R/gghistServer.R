@@ -6,7 +6,7 @@
 #' @param id shiny module server id
 #'
 #' @return shiny server module
-#' @export gghistogramServer
+#' @export gghistServer
 #'
 #' @importFrom shiny tagList numericInput NS plotOutput renderPlot
 #' @importFrom shiny is.reactive moduleServer bindEvent req
@@ -14,7 +14,7 @@
 #' @importFrom purrr set_names as_vector
 #' @importFrom ggplot2 ggplot aes geom_histogram labs theme_minimal
 #'
-gghistogramServer <- function(id, x, title = reactive("Histogram")) {
+gghistServer <- function(id, x, title = reactive("Histogram")) {
     stopifnot(shiny::is.reactive(x))
     stopifnot(shiny::is.reactive(title))
 

@@ -16,6 +16,7 @@ pkgDatasetInput <- function(id, pkg = NULL) {
 
   if (!is.null(pkg)) {
       pkg_inst_check(pkg)
+      Sys.sleep(time = 1.5)
       ui_pkgs <- find_df_pkgs()
   } else {
       ui_pkgs <- find_df_pkgs()

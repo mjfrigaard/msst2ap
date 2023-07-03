@@ -30,7 +30,7 @@ library(msst2ap)
 
 ## Package datasets
 
-I've added some additional unit tests for the utility functions in the `ggHistogramApp()`
+I've added some additional unit tests for the utility functions in the `gghistApp()`
 
 ## `pkg_inst_check()`
 

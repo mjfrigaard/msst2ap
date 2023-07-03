@@ -6,21 +6,26 @@
 #'
 #' @section Histogram App:
 #' The `gghistogramApp()` is built using the `pkgDatasetInput()`/`pkgDatasetServer()`,
-#' `selectVarInput()`/`selectVarServer()` and `histogramOutput()`/`gghistogramServer()`
+#' `selectVarInput()`/`selectVarServer()` and `histogramOutput()`/`gghistServer()`
 #'  modules.
 #'
 #' @param pkg packages listing `data.frame`s
 #' @return shiny app
 #'
 #'
-#' @export ggHistogramApp
+#' @export gghistApp
 #'
 #' @importFrom shiny fluidPage sidebarLayout sidebarPanel
 #' @importFrom shiny mainPanel
 #'
 #' @examples
-#' ggHistogramApp(pkg = c("dplyr", "palmerpenguins"))
-ggHistogramApp <- function(pkg = NULL) {
+#' gghistApp(pkg = c("dplyr", "palmerpenguins"))
+gghistApp <- function(pkg = NULL) {
+
+  if (!is.null(pkg)) {
+      pkg_inst_check(pkg)
+  }
+
   ui <- shiny::fluidPage(
     shiny::sidebarLayout(
       shiny::sidebarPanel(
@@ -46,7 +51,7 @@ ggHistogramApp <- function(pkg = NULL) {
 
     x <- selectVarServer(id = "selectVar", data)
 
-    gghistogramServer(id = "gghistogram", x = x)
+    gghistServer(id = "gghistogram", x = x)
 
     output$vals <- shiny::renderPrint({
       vals <- shiny::reactiveValuesToList(input, all.names = TRUE)
