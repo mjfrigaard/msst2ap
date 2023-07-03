@@ -6,18 +6,20 @@
 \usage{
 datasetApp(filter = NULL)
 }
-\arguments{
-\item{filter}{limit the options of built-in datasets (i.e., \code{is.data.frame}
-or \code{is.matrix})}
-}
 \value{
 shiny application
 }
 \description{
-This module function comes from the \href{https://mastering-shiny.org/scaling-modules.html#getting-started-ui-input-server-output}{Getting started: UI input + server output} section of Mastering Shiny.
+This standalone app function is from the \href{https://mastering-shiny.org/scaling-modules.html#getting-started-ui-input-server-output}{Getting started: UI input + server output} section of Mastering Shiny.
 }
-\section{Reactive values}{
+\section{filter}{
 
-The only changes to this application include a call to \code{verbatimTextOutput()} in the UI, which renders the contents of \code{reactiveValuesToList()} in the server. The \code{renderPrint()} output contains the \code{inputId}s for the modules in the application.
+This application includes an argument for filtering objects "\emph{limit the options to built-in datasets that are either data frames (filter = is.data.frame) or matrices (filter = is.matrix)}" displayed in the \code{selectInput()}.
+}
+
+\section{reactive values}{
+
+The \code{renderPrint()} output contains the output from \code{shiny::reactiveValuesToList()}
+and contains the\code{inputId}s for the modules in the application.
 }
 

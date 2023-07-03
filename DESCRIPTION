@@ -16,18 +16,17 @@ Depends:
 Suggests: 
     knitr,
     rmarkdown,
-    shinytest2
+    withr,
+    dplyr,
+    ggplot2
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 Imports: 
-    dplyr,
     rlang,
-    ggplot2,
     janitor,
-    NHANES,
-    palmerpenguins,
     rsconnect,
     shiny,
     stringr,
     testthat,
-    zeallot
+    zeallot,
+    shinytest2

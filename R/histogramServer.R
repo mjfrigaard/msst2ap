@@ -9,16 +9,26 @@
 #' @export histogramServer
 #'
 #' @importFrom shiny tagList numericInput NS plotOutput renderPlot req
+#' @importFrom purrr as_vector
 #'
 histogramServer <- function(id, x, title = reactive("Histogram")) {
   stopifnot(shiny::is.reactive(x))
   stopifnot(shiny::is.reactive(title))
 
   shiny::moduleServer(id, function(input, output, session) {
+
     output$hist <- shiny::renderPlot({
-      shiny::req(is.numeric(x()))
+      shiny::req(x())
       main <- paste0(title(), " [", input$bins, "]")
-      hist(x(), breaks = input$bins, main = main)
+      hist(purrr::as_vector(x()),
+        breaks = input$bins,
+        main = main)
     }, res = 96)
+
+    output$data <- shiny::renderPrint({
+      shiny::req(x())
+      print(head(x()))
+    })
+
   })
 }

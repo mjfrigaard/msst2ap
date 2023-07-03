@@ -1,30 +1,36 @@
-#' Dataset app
+#' Package Dataset App
 #'
 #'
 #' @description
-#' This standalone app function is from the [Getting started: UI input + server output](https://mastering-shiny.org/scaling-modules.html#getting-started-ui-input-server-output) section of Mastering Shiny.
+#' This standalone app function has been adapted from the [Getting started: UI input + server output](https://mastering-shiny.org/scaling-modules.html#getting-started-ui-input-server-output) section of Mastering Shiny.
 #'
-#' @section filter:
-#' This application includes an argument for filtering objects "*limit the options to built-in datasets that are either data frames (filter = is.data.frame) or matrices (filter = is.matrix)*" displayed in the `selectInput()`.
+#' @section Packages:
+#' This application includes an argument for entering the packages to display in
+#' the `selectInput()` in the UI.
 #'
 #' @section reactive values:
 #' The `renderPrint()` output contains the output from `shiny::reactiveValuesToList()`
 #' and contains the`inputId`s for the modules in the application.
 #'
 #' @return shiny application
-#' @export
+#' @export pkgdatasetApp
 #'
 #' @importFrom shiny tableOutput renderTable shinyApp
 #' @importFrom shiny reactiveValuesToList renderPrint verbatimTextOutput
-datasetApp <- function(filter = NULL) {
+pkgdatasetApp <- function(pkg = NULL) {
   ui <- shiny::fluidPage(
-    datasetInput("dataset", filter = filter),
+
+    pkgDatasetInput(id = "dataset", pkg = pkg),
+
     shiny::tableOutput("data"),
     shiny::verbatimTextOutput("vals")
+
   )
+
   server <- function(input, output, session) {
 
-    data <- datasetServer("dataset")
+    data <- pkgDatasetServer("dataset")
+
     output$data <- shiny::renderTable(head(data()))
 
     output$vals <- shiny::renderPrint({
@@ -34,5 +40,7 @@ datasetApp <- function(filter = NULL) {
     }, width = 30)
 
   }
+
   shiny::shinyApp(ui, server)
+
 }

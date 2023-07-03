@@ -4,7 +4,7 @@
 \alias{find_vars}
 \title{Find variables}
 \usage{
-find_vars(data, filter)
+find_vars(data, filter = is.vector)
 }
 \arguments{
 \item{data}{reactive data object to retrieve variables from}

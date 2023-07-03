@@ -13,7 +13,7 @@
 #' @return variable names
 #' @export
 #'
-find_vars <- function(data, filter) {
+find_vars <- function(data, filter = is.vector) {
   stopifnot(is.data.frame(data))
   stopifnot(is.function(filter))
   names(data)[vapply(data, filter, logical(1))]

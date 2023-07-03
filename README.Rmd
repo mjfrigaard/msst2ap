@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-The goal of `msst2ap` (Mastering shiny `shinytest2` app-package) is to demonstrate how to test a shiny application package using [`testthat`](https://testthat.r-lib.org/) and [`shinytest2`](https://rstudio.github.io/shinytest2/)
+The goal of `msst2ap` (**M**astering **s**hiny **s**hiny**t**est**2** **a**pp-**p**ackage) is to demonstrate how to test a shiny app-package using [`testthat`](https://testthat.r-lib.org/) and [`shinytest2`](https://rstudio.github.io/shinytest2/)
 
 ## Installation
 
@@ -32,22 +32,133 @@ library(msst2ap)
 
 ## Utility function tests
 
-There is a single utility function in `msst2ap`: `find_vars()`
+The `find_vars()` function comes from [Mastering Shiny](https://mastering-shiny.org/scaling-modules.html#server-inputs), and it's used for filtering variables from a `data.frame`/`tibble` by type: 
+
+```{r}
+#| eval: true
+#| echo: true
+find_vars(data = airquality, filter = is.numeric)
+```
+
 
 ```{r}
 #| eval: true
 #| echo: false
-fs::dir_tree("tests/testthat/", regexp = "find")
+fs::dir_tree("tests/testthat/", regexp = "utils")
 ```
 
 ```{r}
 #| eval: false
-testthat::test_file("tests/testthat/test-find_vars.R")
+testthat::test_file("tests/testthat/test-utils_find_vars.R")
 ```
 
 ```{verbatim}
 #> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
 ```
+
+## Package datasets
+
+I've added some additional unit tests for the utility functions in the `ggHistogramApp()`
+
+## `pkg_inst_check()`
+
+`pkg_inst_check` will check if a package is installed, and if not, install it.
+
+```{r}
+#| eval: true 
+#| echo: true
+if ("emoji" %in% loadedNamespaces()) {
+  # remove from ns
+  remove.packages("emoji")
+} else {
+  # with single pkg
+  pkg_inst_check("emoji")
+}
+```
+
+```{r}
+#| eval: true 
+#| echo: true
+if (any(c("palmerpenguins", "snakecase") %nin% loadedNamespaces())) {
+    # with multiple pkgs
+    pkgs <- c("palmerpenguins", "snakecase")
+    pkg_inst_check(pkgs)
+}
+```
+
+## `find_pkg_df_nms()`
+
+The `find_pkg_df_nms()` function will return a named vector of `data.frame`s/`tibble`s in a package.
+
+It works with base packages: 
+
+```{r}
+#| eval: true 
+#| echo: true 
+#| message: false 
+#| warning: false
+pkg_inst_check("forcats")
+find_pkg_df_nms(pkg = "forcats")
+```
+
+And add-on packages:
+
+```{r}
+#| eval: true 
+#| echo: true 
+#| message: false 
+#| warning: false
+find_pkg_df_nms(pkg = "datasets")
+```
+
+If there are no `data.frame`s/`tibble`s, it returns nothing.
+
+```{r}
+#| eval: true 
+#| echo: true 
+#| message: false 
+#| warning: false
+find_pkg_df_nms(pkg = "utils")
+find_pkg_df_nms(pkg = "stats")
+```
+
+## `pkg_df_check()` 
+
+`pkg_df_check()` is a helper function that returns a `TRUE`/`FALSE` if the package contains at least one `data.frame`/`tibble`: 
+
+```{r}
+#| eval: true 
+#| echo: true 
+#| message: false 
+#| warning: false
+pkg_df_check("datasets")
+pkg_df_check("stringr")
+```
+
+## `find_df_pkgs()` 
+
+`find_df_pkgs()` is the real workhorse of the `msst2ap` package--it returns the installed packages with `data.frame`s/`tibble`s: 
+
+```{r}
+#| eval: true 
+#| echo: true 
+#| message: false 
+#| warning: false
+find_df_pkgs()
+```
+
+## `get_pkg_df()` 
+
+`get_pkg_df()` is similar to `get()`, but has a slightly more intuitive API (i.e., only needs the `pkg` and `df`)
+
+```{r}
+#| eval: true 
+#| echo: true 
+#| message: false 
+#| warning: false
+get_pkg_df(df = "starwars", pkg = "dplyr")
+```
+
 
 
 ## `testServer()` tests
@@ -70,7 +181,7 @@ fs::dir_tree("tests/testthat/", regexp = "Server")
 test_file("tests/testthat/test-datasetServer.R")
 ```
 
-````{verbatim}
+```{verbatim}
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 	   datasetServer: dataset$input is NULL 
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
@@ -89,7 +200,7 @@ test_file("tests/testthat/test-datasetServer.R")
 test_file("tests/testthat/test-selectVarServer.R")
 ```
 
-````{verbatim}
+```{verbatim}
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 	   selectVarServer: is.reactive(data()) 
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
@@ -106,7 +217,7 @@ test_file("tests/testthat/test-selectVarServer.R")
 test_file("tests/testthat/test-selectDataVarServer.R")
 ```
 
-````{verbatim}
+```{verbatim}
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 	   selectDataVarServer: is.reactive(data) 
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
@@ -131,7 +242,7 @@ fs::dir_tree("tests/testthat/", regexp = "App")
 test_file("tests/testthat/test-datasetApp.R")
 ```
 
-````{verbatim}
+```{verbatim}
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 	   datasetApp: input$`dataset-dataset` 
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
@@ -148,7 +259,7 @@ test_file("tests/testthat/test-datasetApp.R")
 test_file("tests/testthat/test-selectVarApp.R")
 ```
 
-````{verbatim}
+```{verbatim}
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 	   selectVarApp: is.reactive(var) 
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
@@ -167,7 +278,7 @@ test_file("tests/testthat/test-selectVarApp.R")
 test_file("tests/testthat/test-selectDataVarApp.R")
 ```
 
-````{verbatim}
+```{verbatim}
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
 	   selectDataVarApp: input$`var-var-var` 
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
