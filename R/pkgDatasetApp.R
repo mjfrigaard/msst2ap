@@ -17,13 +17,17 @@
 #'
 #' @importFrom shiny tableOutput renderTable shinyApp
 #' @importFrom shiny reactiveValuesToList renderPrint verbatimTextOutput
+#' @importFrom dplyr select where
 pkgdatasetApp <- function(pkg = NULL) {
+
   ui <- shiny::fluidPage(
 
     pkgDatasetInput(id = "dataset", pkg = pkg),
 
     shiny::tableOutput("data"),
+
     shiny::verbatimTextOutput("vals")
+
 
   )
 
@@ -31,7 +35,15 @@ pkgdatasetApp <- function(pkg = NULL) {
 
     data <- pkgDatasetServer("dataset")
 
-    output$data <- shiny::renderTable(head(data()))
+    output$data <- shiny::renderTable(
+
+      # head(data())
+
+      head(
+        dplyr::select(data(),
+          !dplyr::where(is.list))
+        )
+      )
 
     output$vals <- shiny::renderPrint({
       x <- shiny::reactiveValuesToList(input,

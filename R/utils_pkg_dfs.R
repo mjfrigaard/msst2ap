@@ -28,12 +28,12 @@ pkg_install_check <- function(pkg) {
         ask = FALSE,
         dependencies = NA,
         lib = .libPaths()[[1L]])
-      require(package = x, quietly = TRUE,
+      library(package = x, quietly = TRUE,
         lib.loc = .libPaths()[[1L]])
     } else if (rlang::is_installed(pkg = x)) {
-      lib <-  .libPaths()[[1L]]
-      require(package = x, quietly = TRUE,
-        lib.loc = .libPaths()[[1L]])
+      library(package = x, quietly = TRUE,
+        lib.loc = .libPaths()[[1L]],
+        character.only = TRUE)
       cli::cli_alert_success("Package installed")
     } else {
       cli::cli_abort("Package not available")
@@ -56,11 +56,11 @@ pkg_install_check <- function(pkg) {
 #' @importFrom purrr walk
 #'
 #' @examples
-#' p <- c("emoji", "palmerpenguins")
+#' p <- c("emoji", "haven")
 #'  if (any(p  %in% loadedNamespaces())) {
 #'   remove.packages(p)
 #'  }
-#' pkg_inst_check(c("janitor", "snakecase"))
+#' pkg_inst_check(c("emoji", "haven"))
 pkg_inst_check <- function(pkg, quiet = TRUE) {
   options(repos = 'http://cran.us.r-project.org')
   pkg_check <- function(pkg, quiet) {
@@ -77,7 +77,8 @@ pkg_inst_check <- function(pkg, quiet = TRUE) {
           verbose = FALSE)
 
         cat('\nLoading Package :', pkg, "\n")
-          require(pkg, character.only = TRUE)
+          library(pkg, lib.loc = .libPaths()[[1L]],
+            character.only = TRUE)
         }
       # rstudioapi::restartSession()
     } else {
@@ -89,7 +90,8 @@ pkg_inst_check <- function(pkg, quiet = TRUE) {
           quiet = TRUE,
           verbose = FALSE)
 
-        require(pkg, character.only = TRUE)
+        library(pkg, lib.loc = .libPaths()[[1L]],
+          character.only = TRUE)
       }
     }
   }

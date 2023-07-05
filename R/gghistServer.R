@@ -1,3 +1,7 @@
+# gghistUI -----
+# include conditional UI for bins if numeric and n if character/factor
+
+
 #' Histogram server module (ggplot2)
 #'
 #' @description
@@ -15,6 +19,7 @@
 #' @importFrom ggplot2 ggplot aes geom_histogram labs theme_minimal
 #'
 gghistServer <- function(id, x, title = reactive("Histogram")) {
+
     stopifnot(shiny::is.reactive(x))
     stopifnot(shiny::is.reactive(title))
 
@@ -23,6 +28,7 @@ gghistServer <- function(id, x, title = reactive("Histogram")) {
     output$hist <- shiny::renderPlot({
       shiny::req(x())
       plot_var <- purrr::as_vector(x())
+      # include switch statement for table vs. plot
       if (is.numeric(plot_var)) {
       ggplot2::ggplot(
         mapping =

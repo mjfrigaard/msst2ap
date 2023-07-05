@@ -13,10 +13,11 @@
 #'
 #' @importFrom shiny selectInput NS tagList verbatimTextOutput
 pkgDatasetInput <- function(id, pkg = NULL) {
-
   if (!is.null(pkg)) {
       pkg_inst_check(pkg)
-      Sys.sleep(time = 1.5)
+      if (all(pkg %in% loadedNamespaces())) {
+        pkg_inst_check(pkg)
+      }
       ui_pkgs <- find_df_pkgs()
   } else {
       ui_pkgs <- find_df_pkgs()

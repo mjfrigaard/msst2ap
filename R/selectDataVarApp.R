@@ -36,7 +36,9 @@ DataVarUI <- function() {
 #' @importFrom shiny renderPrint shinyApp
 DataVarServer <- function(input, output, session, filter = is.numeric) {
   var <- selectDataVarServer("var", filter = filter)
-  output$out <- shiny::renderPrint(var(), width = 40)
+
+  output$out <- shiny::renderPrint(head(var()), width = 40)
+
     output$vals <- shiny::renderPrint({
       x <- shiny::reactiveValuesToList(input,
                               all.names = TRUE)
@@ -90,14 +92,17 @@ selectDataVarApp <- function(filter = is.numeric) {
     )
   )
   server <- function(input, output, session) {
+
     var <- selectDataVarServer("var", filter)
-    output$out <- shiny::renderPrint(var())
+
+    output$out <- shiny::renderPrint(head(var()))
 
     output$vals <- shiny::renderPrint({
       x <- shiny::reactiveValuesToList(input,
                               all.names = TRUE)
       print(x)
     })
+
   }
   shiny::shinyApp(ui, server)
 }
