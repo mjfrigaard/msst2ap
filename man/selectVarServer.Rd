@@ -25,3 +25,8 @@ This module function comes from the \href{https://mastering-shiny.org/scaling-mo
 \emph{check that each input to your module is either reactive or constant. If you don’t, and the user supplies the wrong type, they’ll get a cryptic error message. You can make the life of module user much easier with a quick and dirty call to \code{stopifnot()}}
 }
 
+\section{returned variable validation}{
+
+The returned value from \code{selectVarServer()} has been
+}
+

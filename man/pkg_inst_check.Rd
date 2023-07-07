@@ -16,9 +16,9 @@ installation success or failure
 Check if a package is installed, if not, install it.
 }
 \examples{
-p <- c("emoji", "palmerpenguins")
+p <- c("emoji", "haven")
  if (any(p  \%in\% loadedNamespaces())) {
   remove.packages(p)
  }
-pkg_inst_check(c("janitor", "snakecase"))
+pkg_inst_check(c("emoji", "haven"))
 }

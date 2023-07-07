@@ -12,33 +12,14 @@
 #' @importFrom shiny NS plotOutput verbatimTextOutput
 histogramOutput <- function(id) {
   shiny::tagList(
-    shiny::fluidRow(
-      shiny::column(
-        width = 6,
-        shiny::numericInput(
-          shiny::NS(id, "bins"),
-          label = "bins",
-          value = 10,
-          min = 1,
-          step = 1
-        )
-      )
+    shiny::numericInput(
+      shiny::NS(id, "bins"),
+      label = "bins",
+      value = 10,
+      min = 1,
+      step = 1
     ),
-    shiny::fluidRow(
-      shiny::column(
-        width = 12,
-        shiny::plotOutput(
-          shiny::NS(id, "hist")
-        )
-      )
-    ),
-    shiny::fluidRow(
-      shiny::column(
-        width = 10, offset = 1,
-        shiny::verbatimTextOutput(
-          shiny::NS(id, "data")
-        )
-      )
-    )
+    shiny::plotOutput(
+      shiny::NS(id, "hist"))
   )
 }

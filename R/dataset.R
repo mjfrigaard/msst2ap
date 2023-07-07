@@ -18,7 +18,10 @@ datasetInput <- function(id, filter = NULL) {
     names <- names[vapply(data, filter, logical(1))]
   }
 
-  selectInput(NS(id, "dataset"), "Pick a dataset", choices = names)
+  shiny::selectInput(
+    shiny::NS(id, "dataset"),
+    "Pick a dataset",
+    choices = names)
 }
 
 

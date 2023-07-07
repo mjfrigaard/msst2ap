@@ -9,10 +9,10 @@
 #' section of Mastering Shiny.
 #'
 #' @return UI module function
-#' @export pkgDatasetInput
+#' @export pkgDataInput
 #'
 #' @importFrom shiny selectInput NS tagList verbatimTextOutput
-pkgDatasetInput <- function(id, pkg = NULL) {
+pkgDataInput <- function(id, pkg = NULL) {
   if (!is.null(pkg)) {
       pkg_inst_check(pkg)
       if (all(pkg %in% loadedNamespaces())) {
@@ -41,11 +41,11 @@ pkgDatasetInput <- function(id, pkg = NULL) {
 #' @param id module id
 #'
 #' @return module server function (for package datasets).
-#' @export pkgDatasetServer
+#' @export pkgDataServer
 #'
 #' @importFrom shiny moduleServer observe req updateSelectInput
 #' @importFrom shiny reactive bindEvent bindCache
-pkgDatasetServer <- function(id) {
+pkgDataServer <- function(id) {
 
   shiny::moduleServer(id, function(input, output, session) {
 

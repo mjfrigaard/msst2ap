@@ -5,7 +5,7 @@
 #' This module function has been adapted from the [Case study: histogram](https://mastering-shiny.org/scaling-modules.html#case-study-histogram) section of Mastering Shiny.
 #'
 #' @section Histogram App:
-#' The `gghistogramApp()` is built using the `pkgDatasetInput()`/`pkgDatasetServer()`,
+#' The `gghistogramApp()` is built using the `pkgDataInput()`/`pkgDataServer()`,
 #' `selectVarInput()`/`selectVarServer()` and `histogramOutput()`/`gghistServer()`
 #'  modules.
 #'
@@ -29,29 +29,23 @@ gghistApp <- function(pkg = NULL) {
   ui <- shiny::fluidPage(
     shiny::sidebarLayout(
       shiny::sidebarPanel(
+        pkgDataInput(id = "pkg", pkg = pkg),
+        selectVarInput(id = "var")
+      ),
 
-        pkgDatasetInput(id = "pkgDataset", pkg = pkg),
-
-        selectVarInput(id = "selectVar"),
+      shiny::mainPanel(
+        histogramOutput(id = "hist"),
 
         shiny::verbatimTextOutput("vals")
-
-      ),
-      shiny::mainPanel(
-
-        histogramOutput(id = "gghistogram")
 
       )
     )
   )
 
   server <- function(input, output, session) {
-
-    data <- pkgDatasetServer(id = "pkgDataset")
-
-    x <- selectVarServer(id = "selectVar", data)
-
-    gghistServer(id = "gghistogram", x = x)
+    data <- pkgDataServer(id = "pkg")
+    x <- selectVarServer(id = "var", data)
+    gghistServer(id = "hist", x = x)
 
     output$vals <- shiny::renderPrint({
       vals <- shiny::reactiveValuesToList(input, all.names = TRUE)

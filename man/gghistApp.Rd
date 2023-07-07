@@ -17,7 +17,7 @@ This module function has been adapted from the \href{https://mastering-shiny.org
 }
 \section{Histogram App}{
 
-The \code{gghistogramApp()} is built using the \code{pkgDatasetInput()}/\code{pkgDatasetServer()},
+The \code{gghistogramApp()} is built using the \code{pkgDataInput()}/\code{pkgDataServer()},
 \code{selectVarInput()}/\code{selectVarServer()} and \code{histogramOutput()}/\code{gghistServer()}
 modules.
 }

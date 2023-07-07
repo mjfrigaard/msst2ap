@@ -12,18 +12,21 @@
 #' @return shiny app
 #' @export
 #'
-#' @importFrom shiny verbatimTextOutput renderPrint shinyApp
+#' @importFrom shiny verbatimTextOutput renderPrint
+#' @importFrom shiny tableOutput renderTable shinyApp
 selectVarApp <- function(filter = is.numeric) {
   ui <- shiny::fluidPage(
-    datasetInput("data", is.data.frame),
-    selectVarInput("var"),
-    shiny::verbatimTextOutput("out"),
-    shiny::verbatimTextOutput("vals")
+            datasetInput("data", is.data.frame),
+            selectVarInput("var"),
+            shiny::tableOutput("out"),
+            shiny::verbatimTextOutput("vals")
   )
   server <- function(input, output, session) {
+
     data <- datasetServer("data")
     var <- selectVarServer("var", data, filter = filter)
-    output$out <- shiny::renderPrint(var())
+
+    output$out <- shiny::renderTable(head(var()))
 
     output$vals <- shiny::renderPrint({
       x <- shiny::reactiveValuesToList(input,

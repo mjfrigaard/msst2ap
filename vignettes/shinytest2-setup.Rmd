@@ -1,0 +1,34 @@
+---
+title: "shinytest2 setup"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{shinytest2 setup}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+#| label: packages 
+#| warning: false 
+#| message: false 
+library(msst2ap)
+library(shinytest2)
+```
+
+This vignette walks through setting up `shinytest2` for a shiny app-package. 
+
+
+
+The applications have been drawn from the [Shiny Modules section of Mastering Shiny.](https://mastering-shiny.org/scaling-modules.html) 
+
+
+

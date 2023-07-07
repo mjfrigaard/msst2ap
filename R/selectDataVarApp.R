@@ -13,7 +13,7 @@ DataVarUI <- function() {
       shiny::sidebarPanel(
         selectDataVarUI("var")),
       shiny::mainPanel(
-        shiny::verbatimTextOutput("out"),
+        shiny::tableOutput("out"),
         shiny::verbatimTextOutput("vals")
         )
     )
@@ -37,7 +37,7 @@ DataVarUI <- function() {
 DataVarServer <- function(input, output, session, filter = is.numeric) {
   var <- selectDataVarServer("var", filter = filter)
 
-  output$out <- shiny::renderPrint(head(var()), width = 40)
+  output$out <- shiny::renderTable(head(var()), width = 40)
 
     output$vals <- shiny::renderPrint({
       x <- shiny::reactiveValuesToList(input,
@@ -86,7 +86,7 @@ selectDataVarApp <- function(filter = is.numeric) {
         ),
       shiny::mainPanel(
         shiny::tags$br(),
-        shiny::verbatimTextOutput("out"),
+        shiny::tableOutput("out"),
         shiny::verbatimTextOutput("vals")
         )
     )
@@ -95,7 +95,7 @@ selectDataVarApp <- function(filter = is.numeric) {
 
     var <- selectDataVarServer("var", filter)
 
-    output$out <- shiny::renderPrint(head(var()))
+    output$out <- shiny::renderTable(head(var()))
 
     output$vals <- shiny::renderPrint({
       x <- shiny::reactiveValuesToList(input,

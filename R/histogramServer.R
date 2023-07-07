@@ -19,16 +19,11 @@ histogramServer <- function(id, x, title = reactive("Histogram")) {
 
     output$hist <- shiny::renderPlot({
       shiny::req(x())
-      main <- paste0(title(), " [", input$bins, "]")
+      main <- paste0(title(), " [bins =", input$bins, "]")
       hist(purrr::as_vector(x()),
         breaks = input$bins,
         main = main)
     }, res = 96)
-
-    output$data <- shiny::renderPrint({
-      shiny::req(x())
-      print(head(x()))
-    })
 
   })
 }

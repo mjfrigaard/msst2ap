@@ -13,16 +13,16 @@
 #' and contains the`inputId`s for the modules in the application.
 #'
 #' @return shiny application
-#' @export pkgdatasetApp
+#' @export pkgDataApp
 #'
 #' @importFrom shiny tableOutput renderTable shinyApp
 #' @importFrom shiny reactiveValuesToList renderPrint verbatimTextOutput
 #' @importFrom dplyr select where
-pkgdatasetApp <- function(pkg = NULL) {
+pkgDataApp <- function(pkg = NULL) {
 
   ui <- shiny::fluidPage(
 
-    pkgDatasetInput(id = "dataset", pkg = pkg),
+    pkgDataInput(id = "dataset", pkg = pkg),
 
     shiny::tableOutput("data"),
 
@@ -33,7 +33,7 @@ pkgdatasetApp <- function(pkg = NULL) {
 
   server <- function(input, output, session) {
 
-    data <- pkgDatasetServer("dataset")
+    data <- pkgDataServer("dataset")
 
     output$data <- shiny::renderTable(
 
