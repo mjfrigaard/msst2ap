@@ -4,6 +4,6 @@ pkgload::load_all(
   helpers = TRUE,
   attach_testthat = TRUE)
 library(msst2ap)
-# options(shiny.fullstacktrace = TRUE)
-msst2ap::pkgDataApp()
+msst2ap::histogramApp()
+# deploy this application with
 # rsconnect::deployApp()
