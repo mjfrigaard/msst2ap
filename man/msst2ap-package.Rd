@@ -4,8 +4,8 @@
 \name{msst2ap-package}
 \alias{msst2ap}
 \alias{msst2ap-package}
-\title{msst2ap: Test Your Shiny Package App server functions}
+\title{msst2ap: Testing Your Shiny App-Package}
 \description{
-This shiny app-package if from Mastering Shiny and was developed to demonstrate testing with testthat and shiny's testServer().
+This shiny app-package if from Mastering Shiny and was developed to demonstrate testing with testthat and shinytest2.
 }
 \keyword{internal}

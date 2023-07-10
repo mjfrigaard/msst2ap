@@ -1,3 +1,1 @@
-library(testthat)
-library(msst2ap)
-test_check("msst2ap")
+shinytest2::test_app()

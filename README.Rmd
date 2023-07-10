@@ -23,9 +23,14 @@ The goal of `msst2ap` (**M**astering **s**hiny **s**hiny**t**est**2** **a**pp-**
 
 ## Installation
 
-You don't *have* to install the `msst2ap` package, but you might want to download it as an example (or read through [this post](https://mjfrigaard.github.io/posts/test-shiny-p4/) to learn about it's contents).
+You can install `msst2ap` from GitHub using the code below: 
 
 ```{r}
+#| eval: false
+#| echo: true
+remotes::install_github("mjfrigaard/msst2ap",
+  force = TRUE, quiet = TRUE
+)
 library(msst2ap)
 ```
 
@@ -40,148 +45,18 @@ The `find_vars()` function comes from [Mastering Shiny](https://mastering-shiny.
 find_vars(data = airquality, filter = is.numeric)
 ```
 
-
-```{r}
-#| eval: true
-#| echo: false
-fs::dir_tree("tests/testthat/", regexp = "utils")
-```
+View the unit tests in the [`unit-tests.Rmd` vignette]()
 
 ```{r}
 #| eval: false
-testthat::test_file("tests/testthat/test-utils_find_vars.R")
+#| echo: true
+system.file(c("vignettes", "unit-tests.Rmd"), 
+  package = "msst2ap")
 ```
 
-```{verbatim}
-#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-```
 
 ## `testServer()` tests
 
-The unit tests using `shiny`'s `testServer()` function are below. 
+Tests for the module server functions and standalone app functions are in the [`testserver-test.Rmd` vignette](). 
 
-### Module server function tests
-
-These modules come from the [Modules chapter of Mastering Shiny.](https://mastering-shiny.org/scaling-modules.html) 
-
-```{r}
-#| eval: true
-#| echo: false
-fs::dir_tree("tests/testthat/", regexp = "Server")
-```
-
-```{r}
-#| eval: false
-#| echo: false
-test_file("tests/testthat/test-datasetServer.R")
-```
-
-```{verbatim}
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-	   datasetServer: dataset$input is NULL 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-	   datasetServer: dataset$input 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-	   datasetServer: class(session$returned()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-	   datasetServer: is.matrix(session$returned()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 5 ]
-	   datasetServer: typeof(session$returned()) 
-```
-
-```{r}
-#| eval: false
-#| echo: false
-test_file("tests/testthat/test-selectVarServer.R")
-```
-
-```{verbatim}
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-	   selectVarServer: is.reactive(data()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-	   selectVarServer: find_vars() 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-	   selectVarServer: input$var 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-	   selectVarServer: session$returned()
-```
-
-```{r}
-#| eval: false
-#| echo: false
-test_file("tests/testthat/test-selectDataVarServer.R")
-```
-
-```{verbatim}
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-	   selectDataVarServer: is.reactive(data) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-	   selectDataVarServer: is.reactive(var) 
-```
-
-
-### Standalone app function tests
-
-These apps come from the [Modules chapter of Mastering Shiny.](https://mastering-shiny.org/scaling-modules.html) 
-
-```{r}
-#| eval: true
-#| echo: false
-fs::dir_tree("tests/testthat/", regexp = "App")
-```
-
-
-```{r}
-#| eval: false
-#| echo: false
-test_file("tests/testthat/test-datasetApp.R")
-```
-
-```{verbatim}
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-	   datasetApp: input$`dataset-dataset` 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-	   datasetApp: is.data.frame(data()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-	   datasetApp: names(data()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-	   datasetApp: class(output$data) 
-```
-
-```{r}
-#| eval: false
-#| echo: false
-test_file("tests/testthat/test-selectVarApp.R")
-```
-
-```{verbatim}
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-	   selectVarApp: is.reactive(var) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-	   selectVarApp: input$`var-var` 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-	   selectVarApp: is.reactive(data) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-	   selectVarApp: is.data.frame(data()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 5 ]
-	   selectVarApp: data()[[input$`var-var`]] 
-```
-
-```{r}
-#| eval: false
-#| echo: false
-test_file("tests/testthat/test-selectDataVarApp.R")
-```
-
-```{verbatim}
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-	   selectDataVarApp: input$`var-var-var` 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-	   selectDataVarApp: input$`var-data-dataset` 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-	   selectDataVarApp: is.reactive(var) 
-```
-
-```{verbatim}
-🐝 Your tests are the bee's knees 🐝
-```
+All examples come from the [Modules chapter of Mastering Shiny.](https://mastering-shiny.org/scaling-modules.html) 

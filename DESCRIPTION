@@ -1,18 +1,20 @@
 Package: msst2ap
 Type: Package
-Title: Test Your Shiny Package App server functions
+Title: Testing Your Shiny App-Package 
 Version: 0.1.0
 Author: Martin Frigaard
 Maintainer: Martin Frigaard <mjfrigaard@pm.me>
 Description: This shiny app-package if from Mastering Shiny and was developed 
-    to demonstrate testing with testthat and shiny's testServer(). 
+    to demonstrate testing with testthat and shinytest2. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Depends: 
-    R (>= 3.5)
+    R (>= 3.5),
+    shiny, 
+    shinytest2
 Suggests: 
     knitr,
     rmarkdown,
@@ -25,8 +27,5 @@ Imports:
     rlang,
     janitor,
     rsconnect,
-    shiny,
     stringr,
-    testthat,
-    zeallot,
-    shinytest2
+    testthat
