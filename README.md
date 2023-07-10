@@ -13,14 +13,26 @@ using [`testthat`](https://testthat.r-lib.org/) and
 
 ## Installation
 
-You don’t *have* to install the `msst2ap` package, but you might want to
-download it as an example (or read through [this
-post](https://mjfrigaard.github.io/posts/test-shiny-p4/) to learn about
-it’s contents).
+You can install `msst2ap` from GitHub using the code below:
+
+``` r
+remotes::install_github("mjfrigaard/msst2ap",
+  force = TRUE, quiet = TRUE
+)
+```
 
 ``` r
 library(msst2ap)
+#> Loading required package: shiny
+#> Loading required package: shinytest2
+#> Loading required package: testthat
 ```
+
+## Set up
+
+There are specific instructions for setting up `shinytest2` in the
+[`shinytest2-setup.Rmd`
+vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/shinytest2-setup.Rmd).
 
 ## Utility function tests
 
@@ -34,106 +46,14 @@ find_vars(data = airquality, filter = is.numeric)
 #> [1] "Ozone"   "Solar.R" "Wind"    "Temp"    "Month"   "Day"
 ```
 
-    #> tests/testthat/
-    #> ├── test-utils_find_vars.R
-    #> └── test-utils_pkg_dfs.R
-
-``` r
-testthat::test_file("tests/testthat/test-utils_find_vars.R")
-```
-
-``` default
-#> [ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-```
+View the unit tests in the [`unit-tests.Rmd`
+vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/unit-tests.Rmd)
 
 ## `testServer()` tests
 
-The unit tests using `shiny`’s `testServer()` function are below.
+Tests for the module server functions and standalone app functions are
+in the [`testserver-test.Rmd`
+vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/testserver-tests.Rmd).
 
-### Module server function tests
-
-These modules come from the [Modules chapter of Mastering
+All examples come from the [Modules chapter of Mastering
 Shiny.](https://mastering-shiny.org/scaling-modules.html)
-
-    #> tests/testthat/
-    #> ├── test-datasetServer.R
-    #> ├── test-selectDataVarServer.R
-    #> └── test-selectVarServer.R
-
-``` default
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-       datasetServer: dataset$input is NULL 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-       datasetServer: dataset$input 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-       datasetServer: class(session$returned()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-       datasetServer: is.matrix(session$returned()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 5 ]
-       datasetServer: typeof(session$returned()) 
-```
-
-``` default
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-       selectVarServer: is.reactive(data()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-       selectVarServer: find_vars() 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-       selectVarServer: input$var 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-       selectVarServer: session$returned()
-```
-
-``` default
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-       selectDataVarServer: is.reactive(data) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-       selectDataVarServer: is.reactive(var) 
-```
-
-### Standalone app function tests
-
-These apps come from the [Modules chapter of Mastering
-Shiny.](https://mastering-shiny.org/scaling-modules.html)
-
-    #> tests/testthat/
-    #> ├── test-datasetApp.R
-    #> ├── test-selectDataVarApp.R
-    #> └── test-selectVarApp.R
-
-``` default
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-       datasetApp: input$`dataset-dataset` 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-       datasetApp: is.data.frame(data()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-       datasetApp: names(data()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-       datasetApp: class(output$data) 
-```
-
-``` default
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-       selectVarApp: is.reactive(var) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-       selectVarApp: input$`var-var` 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-       selectVarApp: is.reactive(data) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 4 ]
-       selectVarApp: is.data.frame(data()) 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 5 ]
-       selectVarApp: data()[[input$`var-var`]] 
-```
-
-``` default
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 1 ]
-       selectDataVarApp: input$`var-var-var` 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 2 ]
-       selectDataVarApp: input$`var-data-dataset` 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 3 ]
-       selectDataVarApp: is.reactive(var) 
-```
-
-``` default
-🐝 Your tests are the bee's knees 🐝
-```

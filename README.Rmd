@@ -31,9 +31,17 @@ You can install `msst2ap` from GitHub using the code below:
 remotes::install_github("mjfrigaard/msst2ap",
   force = TRUE, quiet = TRUE
 )
+```
+
+```{r}
+#| eval: true
+#| echo: true
 library(msst2ap)
 ```
 
+## Set up 
+
+There are specific instructions for setting up `shinytest2` in the [`shinytest2-setup.Rmd` vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/shinytest2-setup.Rmd). 
 
 ## Utility function tests
 
@@ -45,18 +53,11 @@ The `find_vars()` function comes from [Mastering Shiny](https://mastering-shiny.
 find_vars(data = airquality, filter = is.numeric)
 ```
 
-View the unit tests in the [`unit-tests.Rmd` vignette]()
-
-```{r}
-#| eval: false
-#| echo: true
-system.file(c("vignettes", "unit-tests.Rmd"), 
-  package = "msst2ap")
-```
+View the unit tests in the [`unit-tests.Rmd` vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/unit-tests.Rmd)
 
 
 ## `testServer()` tests
 
-Tests for the module server functions and standalone app functions are in the [`testserver-test.Rmd` vignette](). 
+Tests for the module server functions and standalone app functions are in the [`testserver-test.Rmd` vignette](https://github.com/mjfrigaard/msst2ap/blob/main/vignettes/testserver-tests.Rmd). 
 
 All examples come from the [Modules chapter of Mastering Shiny.](https://mastering-shiny.org/scaling-modules.html) 

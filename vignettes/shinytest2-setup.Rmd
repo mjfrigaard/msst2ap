@@ -24,11 +24,66 @@ library(msst2ap)
 library(shinytest2)
 ```
 
-This vignette walks through setting up `shinytest2` for a shiny app-package. 
+This vignette walks through setting up `shinytest2` for a shiny app-package.
 
 
+## Set up
 
-The applications have been drawn from the [Shiny Modules section of Mastering Shiny.](https://mastering-shiny.org/scaling-modules.html) 
+[`shinytest2`](https://rstudio.github.io/shinytest2/index.html) requires a few steps to get up and running, so I've included my start up steps below (in hopes that someone might find them useful).
+
+## Chromium
+
+First make sure you have [Chromium headless browser](https://www.chromium.org/chromium-projects/) installed. Chromium is the browser used to test and debug shiny apps with `shinytest2`.
+
+If you're using macOS, you can install Chromium using [homebrew](https://formulae.brew.sh/cask/chromium): 
+
+```{bash}
+#| eval: false
+#| code-fold: false 
+brew install --cask chromium
+```
+
+```{bash}
+#| eval: false
+==> Downloading https://download-chromium.appspot.com/dl/Mac?type=snapshots
+==> Downloading from https://commondatastorage.googleapis.com/chromium-browser-s
+######################################################################### 100.0%
+Warning: No checksum defined for cask 'chromium', skipping verification.
+==> Installing Cask chromium
+==> Moving App 'Chromium.app' to '/Applications/Chromium.app'
+==> Linking Binary 'chromium.wrapper.sh' to '/usr/local/bin/chromium'
+🍺  chromium was successfully installed!
+```
+
+
+## `chromote`
+
+The [`chromote` package](https://rstudio.github.io/chromote/index.html) allows R to open Chromium. I had to make sure R knew where to find the Chromium application ([this section helps](https://rstudio.github.io/chromote/#specifying-which-browser-to-use)) by passing the path to the app to `Sys.setenv()` (*you can locate the path to Chromium using by holding <kbd>command (⌘)</kbd> and clicking on the application icon*)
+
+```{r}
+#| eval: false
+remotes::install_github("rstudio/chromote")
+```
+
+```{r}
+library(chromote)
+Sys.setenv(CHROMOTE_CHROME = "/Applications/Chromium.app/Contents/MacOS/Chromium")
+```
+
+Find your chrome app: 
+
+```{r}
+#| eval: true
+chromote::find_chrome()
+```
+
+I also verified the Chromium app opened with `ChromoteSession$new()`
+
+```{r}
+#| eval: false
+b <- ChromoteSession$new()
+b$view()
+```
 
 
 
