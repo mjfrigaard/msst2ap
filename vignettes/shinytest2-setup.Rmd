@@ -62,19 +62,21 @@ The [`chromote` package](https://rstudio.github.io/chromote/index.html) allows R
 
 ```{r}
 #| eval: false
-remotes::install_github("rstudio/chromote")
-```
-
-```{r}
+remotes::install_github("rstudio/chromote", force = TRUE, quiet = TRUE)
 library(chromote)
-Sys.setenv(CHROMOTE_CHROME = "/Applications/Chromium.app/Contents/MacOS/Chromium")
 ```
 
-Find your chrome app: 
+Find your `Chromium` app: 
 
 ```{r}
 #| eval: true
 chromote::find_chrome()
+```
+
+This didn't work for me (kept locating Chrome.app), so I had to find it with the Terminal:
+
+```{r}
+Sys.setenv(CHROMOTE_CHROME = "/Applications/Chromium.app/Contents/MacOS")
 ```
 
 I also verified the Chromium app opened with `ChromoteSession$new()`

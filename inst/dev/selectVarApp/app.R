@@ -1,3 +1,4 @@
+options(shiny.testmode = TRUE)
 selectVarApp <- function(filter = is.numeric) {
   ui <- shiny::fluidPage(
             datasetInput("data", is.data.frame),
@@ -17,6 +18,12 @@ selectVarApp <- function(filter = is.numeric) {
                               all.names = TRUE)
       print(x)
     })
+
+    shiny::exportTestValues(
+      var = var(),
+      data = data()
+    )
+
   }
 
   shiny::shinyApp(ui, server)

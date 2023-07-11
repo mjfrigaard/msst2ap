@@ -12,7 +12,7 @@
 #' @return shiny app
 #' @export
 #'
-#' @importFrom shiny verbatimTextOutput renderPrint
+#' @importFrom shiny verbatimTextOutput renderPrint exportTestValues
 #' @importFrom shiny tableOutput renderTable shinyApp
 selectVarApp <- function(filter = is.numeric) {
   ui <- shiny::fluidPage(
@@ -33,6 +33,7 @@ selectVarApp <- function(filter = is.numeric) {
                               all.names = TRUE)
       print(x)
     })
+
   }
 
   shiny::shinyApp(ui, server)
