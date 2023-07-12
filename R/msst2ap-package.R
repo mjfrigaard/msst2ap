@@ -7,7 +7,6 @@
 ##
 #' @importFrom pkgload load_all
 #' @import rlang
-#' @import zeallot
 #' @import shinytest2
 #' @importFrom dplyr select where filter pull contains mutate glimpse arrange
 #' @importFrom rsconnect deployApp
