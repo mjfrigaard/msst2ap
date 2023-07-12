@@ -686,14 +686,9 @@
     },
     "lobstr": {
       "Package": "lobstr",
-      "Version": "1.1.2.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "lobstr",
-      "RemoteUsername": "r-lib",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "d9ea7fb56632590f66bc4cb41f0d0a97875607c1",
+      "Version": "1.1.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
       "Requirements": [
         "R",
         "cpp11",
@@ -702,7 +697,7 @@
         "prettyunits",
         "rlang"
       ],
-      "Hash": "e7fc3fa5cd6f0ed25566c1fc083a15e1"
+      "Hash": "f2a94f8fc9db382a642e965339635ad6"
     },
     "lubridate": {
       "Package": "lubridate",

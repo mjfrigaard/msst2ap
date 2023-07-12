@@ -326,7 +326,7 @@ shiny::testServer(selectDataVarServer,
 ```
 
 
-## selectDatacVarApp()
+## selectDataVarApp()
 
 Test inputs for `var-var-var`
 

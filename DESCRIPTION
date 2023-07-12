@@ -28,5 +28,6 @@ Imports:
     janitor,
     rsconnect,
     stringr,
-    testthat
+    testthat,
+    lobstr
 URL: https://mjfrigaard.github.io/msst2ap/
