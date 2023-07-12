@@ -61,6 +61,11 @@ gghistServer <- function(id, x, title = reactive("Histogram")) {
     }, res = 124) |>
       shiny::bindEvent(c(x(), input$bins),
         ignoreNULL = TRUE)
+        
+    shiny::exportTestValues(
+      x = x(),
+      plot_obj = plot_obj()
+    )
 
   })
 }

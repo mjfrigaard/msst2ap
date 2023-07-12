@@ -9,6 +9,7 @@ gghistApp <- function() {
       ),
       shiny::mainPanel(
         histogramOutput("hist"),
+        shiny::code("app vals"),
         shiny::verbatimTextOutput("vals")
       )
     )

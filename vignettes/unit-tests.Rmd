@@ -34,11 +34,13 @@ library(testthat)
 
 The unit tests have been removed from `msst2ap` to focus on the `shinytest2` tests, but I've stored each each of them are stored the tests for each R file in this vignette for completeness. 
 
-## Test helpers
-
 ```{r}
-#| label: helper.R
-source("../tests/testthat/helper.R")
+#| label: test_cmt 
+#| include: false
+test_cmt <- function(test, msg) {
+  cat("\n\t", glue::glue("  {test}: {msg}"), "\n")
+}
+
 ```
 
 ## find_vars()

@@ -22,7 +22,6 @@ datasetServer <- function(id) {
   })
 }
 
-
 # selectVar module --------------------------------------------------------
 
 selectVarInput <- function(id) {
@@ -61,6 +60,12 @@ selectVarServer <- function(id, data, filter = is.numeric) {
   })
 }
 
+## find_vars --------------------------------------------------------
+find_vars <- function(data, filter = is.vector) {
+  stopifnot(is.data.frame(data))
+  stopifnot(is.function(filter))
+  names(data)[vapply(data, filter, logical(1))]
+}
 
 # histogramOutput (ui) ---------------------------------------------------------
 
@@ -74,7 +79,11 @@ histogramOutput <- function(id) {
       step = 1
     ),
     shiny::plotOutput(
-      shiny::NS(id, "hist"))
+      shiny::NS(id, "hist")),
+    shiny::code("module vals"),
+    shiny::verbatimTextOutput(
+      shiny::NS(id, "vals"))
+
   )
 }
 
@@ -90,7 +99,8 @@ gghistServer <- function(id, x, title = reactive("Histogram")) {
 
     plot_obj <- shiny::reactive({
                   shiny::req(x())
-                purrr::as_vector(x())})
+                  purrr::as_vector(x())
+                  })
 
     output$hist <- shiny::renderPlot({
       shiny::req(x())
@@ -106,6 +116,17 @@ gghistServer <- function(id, x, title = reactive("Histogram")) {
     }, res = 124) |>
       shiny::bindEvent(c(x(), input$bins),
         ignoreNULL = TRUE)
+
+    output$vals <- shiny::renderPrint({
+      x <- shiny::reactiveValuesToList(input,
+                          all.names = TRUE)
+      print(x, width = 30, max.levels = NULL)
+      }, width = 30)
+
+    shiny::exportTestValues(
+      x = x(),
+      plot_obj = plot_obj()
+    )
 
   })
 }
