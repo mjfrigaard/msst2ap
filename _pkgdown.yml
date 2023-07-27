@@ -14,3 +14,78 @@ template:
     code_font:
       google: Ubuntu Mono
 
+reference:
+- title: "Mastering Shiny Modules: dataset"
+  desc: >
+    Functions for dataset module
+  contents:
+  - datasetInput
+  - datasetServer
+- title: "Mastering Shiny Modules: datasetApp"
+  desc: >
+    Functions for dataset app
+  contents:
+  - datasetApp
+- title: "Mastering Shiny Modules: selectVar"
+  desc: >
+    Functions for selectVar module
+  contents:
+  - selectVarInput
+  - selectVarServer
+- title: "Mastering Shiny Modules: selectVarApp"
+  desc: >
+    Functions for selectVarApp
+  contents:
+  - selectVarApp
+- title: "Mastering Shiny Modules: selectDataVar"
+  desc: >
+    Functions for selectVar module
+  contents:
+  - selectDataVarUI
+  - selectDataVarServer
+  - DataVarUI
+  - DataVarServer
+- title: "Mastering Shiny Modules: selectDataVarApp"
+  desc: >
+    Functions for selectDataVarApp
+  contents:
+  - selectDataVarApp
+  - selectDataVarApp2
+- title: "Mastering Shiny Modules: histogram"
+  desc: >
+    Functions for histogram module
+  contents:
+  - histogramOutput
+  - histogramServer
+- title: "Mastering Shiny Modules: histogramApp"
+  desc: >
+    Functions for histogramApp
+  contents:
+  - histogramApp
+- title: "Utilities"
+  desc: "Helper functions"
+  contents:
+  - find_vars
+  - not-in
+  - test_cmt
+
+navbar:
+ components:
+   articles:
+    text: Articles
+    menu:
+    - text: Getting started
+    - text: shinytest2 setup
+      href: articles/shinytest2-setup.html
+    - text: -------
+    - text: "Unit tests"
+    - text: Unit tests
+      href: articles/unit-tests.html
+    - text: -------
+    - text: "testServer() tests"
+    - text: shiny::testServer() tests
+      href: articles/testserver-tests.html
+    - text: -------
+    - text: "Mastering Shiny: shiny modules (apps)"
+    - text: Apps
+      href: articles/apps.html
