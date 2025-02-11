@@ -18,6 +18,11 @@ histogramApp <- function() {
     x <- selectVarServer("var", data)
     histogramServer("hist", x)
 
+    exportTestValues(
+        data = data,
+        x = x
+      )
+
     output$vals <- shiny::renderPrint({
       x <- shiny::reactiveValuesToList(input,
                               all.names = TRUE)
