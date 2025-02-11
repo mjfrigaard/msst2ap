@@ -5,93 +5,82 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This shiny app-package if from Mastering Shiny and was developed 
-    to demonstrate testing with testthat and shinytest2. ">
-<title>Testing Your Shiny App-Package  • msst2ap</title>
+<title>Mastering Shiny Shiny Test 2 App Package • msst2ap</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Ubuntu-0.4.7/font.css" rel="stylesheet">
-<link href="deps/Ubuntu_Mono-0.4.7/font.css" rel="stylesheet">
-<link href="deps/Fira_Sans_Condensed-0.4.7/font.css" rel="stylesheet">
-<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Testing Your Shiny App-Package ">
-<meta property="og:description" content="This shiny app-package if from Mastering Shiny and was developed 
-    to demonstrate testing with testthat and shinytest2. ">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Ubuntu-0.4.9/font.css" rel="stylesheet">
+<link href="deps/Ubuntu_Mono-0.4.9/font.css" rel="stylesheet">
+<link href="deps/Fira_Sans_Condensed-0.4.9/font.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Mastering Shiny Shiny Test 2 App Package">
+<meta name="description" content="This Shiny app-package demonstrates testing with testthat and shinytest2 using the examples from from Mastering Shiny (mastering-shiny.org).">
+<meta property="og:description" content="This Shiny app-package demonstrates testing with testthat and shinytest2 using the examples from from Mastering Shiny (mastering-shiny.org).">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="index.html">msst2ap</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <h6 class="dropdown-header" data-toc-skip>Getting started</h6>
-    <a class="dropdown-item" href="articles/shinytest2-setup.html">shinytest2 setup</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Unit tests</h6>
-    <a class="dropdown-item" href="articles/unit-tests.html">Unit tests</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>testServer() tests</h6>
-    <a class="dropdown-item" href="articles/testserver-tests.html">shiny::testServer() tests</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Mastering Shiny: shiny modules (apps)</h6>
-    <a class="dropdown-item" href="articles/apps.html">Apps</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><h6 class="dropdown-header" data-toc-skip>Getting started</h6></li>
+    <li><a class="dropdown-item" href="articles/shinytest2-setup.html">shinytest2 setup</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Unit tests</h6></li>
+    <li><a class="dropdown-item" href="articles/unit-tests.html">Unit tests</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>testServer() tests</h6></li>
+    <li><a class="dropdown-item" href="articles/testserver-tests.html">shiny::testServer() tests</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Mastering Shiny: shiny modules (apps)</h6></li>
+    <li><a class="dropdown-item" href="articles/apps.html">Apps</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav"></ul>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+</form></li>
+      </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="msst2ap">
-<code>msst2ap</code><a class="anchor" aria-label="anchor" href="#msst2ap"></a>
+<div class="page-header"><h1 id="mastering-shiny-shiny-test-2-app-package-msst2ap">Mastering Shiny Shiny Test 2 App Package (<code>msst2ap</code>)<a class="anchor" aria-label="anchor" href="#mastering-shiny-shiny-test-2-app-package-msst2ap"></a>
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of <code>msst2ap</code> (<strong>M</strong>astering <strong>s</strong>hiny <strong>s</strong>hiny<strong>t</strong>est<strong>2</strong> <strong>a</strong>pp-<strong>p</strong>ackage) is to demonstrate how to test a shiny app-package using <a href="https://testthat.r-lib.org/" class="external-link"><code>testthat</code></a> and <a href="https://rstudio.github.io/shinytest2/" class="external-link"><code>shinytest2</code></a></p>
+<p>The goal of <code>msst2ap</code> is to demonstrate how to test a shiny app-package using <a href="https://testthat.r-lib.org/" class="external-link"><code>testthat</code></a> and <a href="https://rstudio.github.io/shinytest2/" class="external-link"><code>shinytest2</code></a></p>
 <p>All examples come from the <a href="https://mastering-shiny.org/scaling-modules.html" class="external-link">Modules chapter of Mastering Shiny.</a></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install <code>msst2ap</code> from GitHub using the code below:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mjfrigaard/msst2ap"</span>,</span>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"mjfrigaard/msst2ap"</span>,</span>
 <span>  force <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjfrigaard.github.io/msst2ap/">msst2ap</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: shiny</span></span>
-<span><span class="co">#&gt; Loading required package: shinytest2</span></span>
-<span><span class="co">#&gt; Loading required package: testthat</span></span></code></pre></div>
+<span><span class="co">#&gt; Loading required package: shiny</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="set-up">Set up<a class="anchor" aria-label="anchor" href="#set-up"></a>
@@ -108,53 +97,33 @@
 <code>shinytest2</code> tests<a class="anchor" aria-label="anchor" href="#shinytest2-tests"></a>
 </h2>
 <p>The output from <code>devtools::test()</code> is below:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>==&gt; devtools::test()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ℹ Testing msst2ap</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>✔ | F W S  OK | Context</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>✔ |         1 | shinytest2-datasetApp [17.3s]                                                                    </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>⠼ |         5 | shinytest2-gghistApp                                                                               </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  wt1   wt2   wt3   wt4   wt5   wt6   wt7   wt8   wt9  wt10  wt11  wt12  wt13 </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>2.620 2.875 2.320 3.215 3.440 3.460 3.570 3.190 3.150 3.440 3.440 4.070 3.730 </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> wt14  wt15  wt16  wt17  wt18  wt19  wt20  wt21  wt22  wt23  wt24  wt25  wt26 </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>3.780 5.250 5.424 5.345 2.200 1.615 1.835 2.465 3.520 3.435 3.840 3.845 1.935 </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a> wt27  wt28  wt29  wt30  wt31  wt32 </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>2.140 1.513 3.170 2.770 3.570 2.780 </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>⠇ |         9 | shinytest2-gghistApp                                                                              </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a> UrbanPop1  UrbanPop2  UrbanPop3  UrbanPop4  UrbanPop5  UrbanPop6  UrbanPop7 </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        58         48         80         50         91         78         77 </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a> UrbanPop8  UrbanPop9 UrbanPop10 UrbanPop11 UrbanPop12 UrbanPop13 UrbanPop14 </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        72         80         60         83         54         83         65 </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>UrbanPop15 UrbanPop16 UrbanPop17 UrbanPop18 UrbanPop19 UrbanPop20 UrbanPop21 </span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        57         66         52         66         51         67         85 </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>UrbanPop22 UrbanPop23 UrbanPop24 UrbanPop25 UrbanPop26 UrbanPop27 UrbanPop28 </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        74         66         44         70         53         62         81 </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>UrbanPop29 UrbanPop30 UrbanPop31 UrbanPop32 UrbanPop33 UrbanPop34 UrbanPop35 </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        56         89         70         86         45         44         75 </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>UrbanPop36 UrbanPop37 UrbanPop38 UrbanPop39 UrbanPop40 UrbanPop41 UrbanPop42 </span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        68         67         72         87         48         45         59 </span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>UrbanPop43 UrbanPop44 UrbanPop45 UrbanPop46 UrbanPop47 UrbanPop48 UrbanPop49 </span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        80         80         32         63         73         39         66 </span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>UrbanPop50 </span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        60 </span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>✔ |        10 | shinytest2-gghistApp [13.2s]</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>✔ |         2 | shinytest2-selectVarApp [10.5s]                                                                  </span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>✔ |         1 | shinytest2 [5.0s]                                                                                </span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>══ Results ════════════════════════════════════════════════════════════════════</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>Duration: 46.0 s</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>[ FAIL 0 | WARN 0 | SKIP 0 | PASS 14 ]</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>🔥 Your tests are lit 🔥</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>==&gt; devtools::test()</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>ℹ Testing msst2ap</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>✔ | F W  S  OK | Context</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>✔ |          1 | shinytest2-datasetApp [4.8s]                                                   </span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>⠼ |          5 | shinytest2-gghistApp       </span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>⠋ |         11 | shinytest2-gghistApp                                   </span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>⠙ |         12 | shinytest2-gghistApp                       </span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>✔ |         13 | shinytest2-gghistApp [5.1s]                                </span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>✔ |          5 | shinytest2-histogramApp [3.6s]                                                 </span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>✔ |          2 | shinytest2-selectVarApp [2.2s]                                                 </span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>✔ |          1 | shinytest2 [4.2s]                                                              </span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>══ Results ══════════════════════════════════════════════════════════════════</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>Duration: 19.9 s</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>[ FAIL 0 | WARN 0 | SKIP 0 | PASS 22 ]</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>🔥 Your tests are lit 🔥</span></code></pre></div>
 <div class="section level3">
 <h3 id="known-issue">Known issue<a class="anchor" aria-label="anchor" href="#known-issue"></a>
 </h3>
 <p>The following warning is given when running <code>shinytest2</code> tests in an app package:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Warning message:</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>In shiny::loadSupport(app_dir, renv = renv, globalrenv = globalrenv) :</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  Loading R/ subdirectory for Shiny application, but this directory appears to </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>contain an R package. Sourcing files in R/ may cause unexpected behavior.</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>Warning message:</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>In shiny::loadSupport(app_dir, renv = renv, globalrenv = globalrenv) :</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  Loading R/ subdirectory for Shiny application, but this directory appears to </span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>contain an R package. Sourcing files in R/ may cause unexpected behavior.</span></code></pre></div>
 <p>Don’t worry–there is an <a href="https://github.com/rstudio/shinytest2/issues/264" class="external-link">open issue on GitHub</a> for this!</p>
 </div>
 </div>
@@ -189,21 +158,19 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Martin Frigaard.</p>
+  <p>Developed by Martin Frigaard.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
